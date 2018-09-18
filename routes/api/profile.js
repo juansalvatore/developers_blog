@@ -161,10 +161,11 @@ router.post(
   '/experience',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    // Experience validation
     const { errors, isValid } = validateExperienceInput(req.body)
 
+    // Check Validation
     if (!isValid) {
+      // Return any errors with 400 status
       return res.status(400).json(errors)
     }
 
@@ -172,15 +173,19 @@ router.post(
       const newExp = {
         title: req.body.title,
         company: req.body.company,
-        location: req.body.location,
         from: req.body.from,
+        location: req.body.location,
         to: req.body.to,
         current: req.body.current,
         description: req.body.description,
       }
+
       // Add to exp array
       profile.experience.unshift(newExp)
-      profile.save().then(profile => res.json(profile))
+      profile
+        .save()
+        .then(profile => res.json(profile))
+        .catch(err => res.status(404).json(err))
     })
   }
 )

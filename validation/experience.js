@@ -1,12 +1,11 @@
 const Validator = require('validator')
 const _ = require('lodash')
-const isEmpty = require('./is-empty')
 
 module.exports = function validateExperienceInput(data) {
   let errors = {}
   data.title = _.isEmpty(data.title) ? '' : data.title
   data.company = _.isEmpty(data.company) ? '' : data.company
-  data.from = isEmpty(data.from) ? '' : data.from
+  data.from = _.isEmpty(data.from) ? '' : data.from
 
   if (Validator.isEmpty(data.title)) {
     errors.title = 'Job title field is required'
