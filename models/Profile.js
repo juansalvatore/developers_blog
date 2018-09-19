@@ -90,7 +90,7 @@ const ProfileSchema = new Schema({
         default: false,
       },
       description: {
-        type: Boolean,
+        type: String,
         default: false,
       },
     },
