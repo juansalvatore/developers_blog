@@ -79,4 +79,85 @@ router.post(
   }
 )
 
+// @route   POST api/post/like/:id
+// @desc    Like post
+// @access  Private
+router.post(
+  '/like/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Post.findById(req.params.id).then(post => {
+      if (
+        post.likes.filter(like => like.user.toString() === req.user.id).length >
+        0
+      ) {
+        return res
+          .status(400)
+          .json({ alreadyliked: 'User already liked this post' })
+      }
+      // Add user id to likes array
+      post.likes.unshift({ user: req.user.id })
+
+      post
+        .save()
+        .then(post => res.json(post))
+        .catch(err => res.json(err))
+    })
+  }
+)
+
+// @route   POST api/post/like/:id
+// @desc    Unlike post
+// @access  Private
+router.post(
+  '/unlike/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Post.findById(req.params.id).then(post => {
+      if (
+        post.likes.filter(like => like.user.toString() === req.user.id)
+          .length === 0
+      ) {
+        return res
+          .status(400)
+          .json({ notliked: 'You have not yet liked this post' })
+      }
+
+      // Get remove index
+      const removeIndex = post.likes
+        .map(item => item.user.toString())
+        .indexOf(req.user.id)
+      post.likes.splice(removeIndex, 1)
+      post.save().then(post => res.json(post))
+    })
+  }
+)
+
+// @route   POST api/posts/comment/:id
+// @desc    Post comment
+// @access  Private
+router.post(
+  '/comment/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    console.log('req: ', req.params)
+    // Find post
+    Post.findById(req.params.id)
+      .then(post => {
+        console.log('user: ', req.user)
+        const newPost = {
+          user: req.user._id,
+          text: req.body.text,
+          name: req.user.name,
+        }
+        post.comments.unshift(newPost)
+        post
+          .save()
+          .then(post => res.json(post))
+          .catch(err => res.status(400).json(err))
+      })
+      .catch(err => res.status(404).json({ postnotfound: 'No post found' }))
+  }
+)
+
 module.exports = router
