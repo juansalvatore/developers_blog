@@ -61,11 +61,11 @@
   * [ ] Login form functionality
   * [ ] Logout and conditional navbar
   
-* [ ] Dashboard and profile
+* [ ] Dashboard and profile...
 
-* [ ] Posts and comments
+* [ ] Posts and comments...
 
-* [ ] Prepair and deploy
+* [ ] Prepair and deploy...
   
 
 License
