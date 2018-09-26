@@ -31,6 +31,7 @@ const Nav = styled.nav`
   align-items: center;
   padding-left: 20px;
 `
+
 const Logo = styled.span`
   color: rgba(0, 0, 0, 0.6);
   font-weight: 600;
