@@ -61,7 +61,7 @@
   - [x] Create Register form
   - [x] Create Login form
   - [x] Add state to Register
-  - [ ] Add state to Login
+  - [x] Add state to Login
   - [ ] Error handling
   - [ ] Add Redux to registration
   - [ ] Add Redux to login

@@ -3,15 +3,41 @@ import styled from 'styled-components'
 import { TextField, Button } from '@material-ui/core/'
 
 export default class Login extends Component {
+  state = {
+    email: '',
+    password: '',
+    errors: {},
+  }
+
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  onSubmit = e => {
+    e.preventDefault()
+    console.log('Login')
+  }
+
   render() {
     return (
       <LoginWrapper>
-        <Form>
+        <Form onSubmit={this.onSubmit}>
           <h1>Login</h1>
           <p>Login with your DevConnector account</p>
-          <TextField label="Email Adress" />
-          <TextField label="Password" type="password" />
-          <Button color="primary" variant="raised">
+          <TextField
+            name="email"
+            label="Email Adress"
+            value={this.state.email}
+            onChange={this.onChange}
+          />
+          <TextField
+            name="password"
+            label="Password"
+            type="password"
+            value={this.state.password}
+            onChange={this.onChange}
+          />
+          <Button color="primary" variant="raised" type="submit">
             Login
           </Button>
         </Form>
