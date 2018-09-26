@@ -4,70 +4,76 @@
 
 ### Tech
 
-* [Reactjs](https://reactjs.org/) - JavaScript library for building user interfaces
-* [Redux](https://redux.js.org/) - Predictable state container for JavaScript apps
-* [styled-components](https://www.styled-components.com/) - Visual primitives for the component age 💅
-* [Material-UI](https://material-ui.com/) - React components that implement Google's Material Design.
-* [node.js](https://nodejs.org/) - JavaScript runtime built on Chrome's V8 JavaScript engine.
-* [Express](https://expressjs.com/) - Web framework for Node.js
-* [MongoDB](https://www.mongodb.com/) - Document database
+- [Reactjs](https://reactjs.org/) - JavaScript library for building user interfaces
+- [Redux](https://redux.js.org/) - Predictable state container for JavaScript apps
+- [styled-components](https://www.styled-components.com/) - Visual primitives for the component age 💅
+- [Material-UI](https://material-ui.com/) - React components that implement Google's Material Design.
+- [node.js](https://nodejs.org/) - JavaScript runtime built on Chrome's V8 JavaScript engine.
+- [Express](https://expressjs.com/) - Web framework for Node.js
+- [MongoDB](https://www.mongodb.com/) - Document database
 
 ## ToDo
 
-### Back-end  ✓
+### Back-end ✓
 
-* [x] Basic express setup:
-  * [x] MongoDB Setup
-  * [x] Install dependencies and basic server setup
-  * [x] Connecting to MongoDB with Mongoose
-  * [x] Route files with Express router
+- [x] Basic express setup:
 
-* [x] User API routes and JWT authentication
-  * [x] Creating User model
-  * [x] User registration
-  * [x] Email and Password login
-  * [x] Creating the JWT
-  * [x] Handling validation
+  - [x] MongoDB Setup
+  - [x] Install dependencies and basic server setup
+  - [x] Connecting to MongoDB with Mongoose
+  - [x] Route files with Express router
 
-* [x] Profile API routes
-  * [x] Creating Profile model
-  * [x] Current User profile route
-  * [x] Creating and Updating profile routes
-  * [x] Profile fields validations
-  * [x] Add experience and education to profile 
-  * [x] Delete experience and education from profile 
+- [x] User API routes and JWT authentication
 
-* [x] Post API routes
-  * [x] Creating Post model
-  * [x] Post create route
-  * [x] Get and Delete post routes
-  * [x] Post like and unlike routes
-  * [x] Add and remove comment routes
+  - [x] Creating User model
+  - [x] User registration
+  - [x] Email and Password login
+  - [x] Creating the JWT
+  - [x] Handling validation
+
+- [x] Profile API routes
+
+  - [x] Creating Profile model
+  - [x] Current User profile route
+  - [x] Creating and Updating profile routes
+  - [x] Profile fields validations
+  - [x] Add experience and education to profile
+  - [x] Delete experience and education from profile
+
+- [x] Post API routes
+  - [x] Creating Post model
+  - [x] Post create route
+  - [x] Get and Delete post routes
+  - [x] Post like and unlike routes
+  - [x] Add and remove comment routes
 
 ### Front-end
-* [x] Landing + register + login
-  * [x] Create react app
-  * [x] Create basic layout files
-  * [x] Style navbar, footer and landing
-  
-* [ ] React Router + Register + Login
-  * [x] Create landing, register and login routes
-  * [x] Create Register form 
-  * [x] Create Login form
-  * [ ] Add state
-  * [ ] Error handling
-  * [ ] Add Redux to registration
-  * [ ] Add Redux to login
-  * [ ] Login form functionality
-  * [ ] Logout and conditional navbar
-  
-* [ ] Dashboard and profile...
 
-* [ ] Posts and comments...
+- [x] Landing + register + login
 
-* [ ] Prepair and deploy...
-  
+  - [x] Create react app
+  - [x] Create basic layout files
+  - [x] Style navbar, footer and landing
 
-License
-----
+- [ ] React Router + Register + Login
+
+  - [x] Create landing, register and login routes
+  - [x] Create Register form
+  - [x] Create Login form
+  - [x] Add state to Register
+  - [ ] Add state to Login
+  - [ ] Error handling
+  - [ ] Add Redux to registration
+  - [ ] Add Redux to login
+  - [ ] Login form functionality
+  - [ ] Logout and conditional navbar
+
+- [ ] Dashboard and profile...
+
+- [ ] Posts and comments...
+
+- [ ] Prepair and deploy...
+
+## License
+
 MIT © **[`Juan Salvatore`](http://juansalvatore.com)**
