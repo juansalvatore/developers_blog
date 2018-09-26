@@ -3,17 +3,64 @@ import styled from 'styled-components'
 import { TextField, Button } from '@material-ui/core/'
 
 export default class Register extends Component {
+  state = {
+    name: '',
+    email: '',
+    password: '',
+    password2: '',
+    errors: {},
+  }
+
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  onSubmit = e => {
+    e.preventDefault()
+
+    const newUser = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      password2: this.state.password2,
+    }
+    console.log({ newUser })
+  }
+
   render() {
+    const { name, email, password, password2 } = this.state
     return (
       <RegisterWrapper>
-        <Form>
+        <Form onSubmit={this.onSubmit}>
           <h1>Sign Up</h1>
           <p>Create your DevConnector account</p>
-          <TextField label="Name" />
-          <TextField label="Email Adress" />
-          <TextField label="Password" type="password" />
-          <TextField label="Confirm Password" type="password" />
-          <Button color="primary" variant="raised">
+          <TextField
+            name="name"
+            label="Name"
+            value={name}
+            onChange={this.onChange}
+          />
+          <TextField
+            name="email"
+            label="Email Adress"
+            value={email}
+            onChange={this.onChange}
+          />
+          <TextField
+            name="password"
+            label="Password"
+            type="password"
+            value={password}
+            onChange={this.onChange}
+          />
+          <TextField
+            name="password2"
+            label="Confirm Password"
+            type="password"
+            value={password2}
+            onChange={this.onChange}
+          />
+          <Button color="primary" variant="raised" type="submit">
             Sign Up
           </Button>
         </Form>
