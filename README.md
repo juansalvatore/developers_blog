@@ -62,7 +62,8 @@
   - [x] Create Login form
   - [x] Add state to Register
   - [x] Add state to Login
-  - [ ] Error handling
+  - [x] Error handling
+  - [x] Redux store and chrome extension setup
   - [ ] Add Redux to registration
   - [ ] Add Redux to login
   - [ ] Login form functionality
