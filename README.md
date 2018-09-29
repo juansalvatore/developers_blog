@@ -1,6 +1,6 @@
 # DevConnector
 
-### Connect with programmer friends around the globe
+### Connect with programmer friends around the globe 🌏
 
 ### Tech
 
