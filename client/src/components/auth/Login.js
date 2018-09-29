@@ -1,12 +1,22 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
-import { TextField, Button } from '@material-ui/core/'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { loginUser } from '../../actions/authActions'
 
-export default class Login extends Component {
+import styled from 'styled-components'
+import { TextField, Button, FormHelperText } from '@material-ui/core/'
+
+class Login extends Component {
   state = {
     email: '',
     password: '',
     errors: {},
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push('/dashboard')
+    }
   }
 
   onChange = e => {
@@ -15,14 +25,17 @@ export default class Login extends Component {
 
   onSubmit = e => {
     e.preventDefault()
+
     const user = {
       email: this.state.email,
       password: this.state.password,
     }
-    console.log({ user })
+
+    this.props.loginUser(user)
   }
 
   render() {
+    const { errors } = this.props
     return (
       <LoginWrapper>
         <Form onSubmit={this.onSubmit}>
@@ -34,6 +47,8 @@ export default class Login extends Component {
             value={this.state.email}
             onChange={this.onChange}
           />
+          <FormHelperText error={true}>{errors.email}</FormHelperText>
+
           <TextField
             name="password"
             label="Password"
@@ -41,7 +56,14 @@ export default class Login extends Component {
             value={this.state.password}
             onChange={this.onChange}
           />
-          <Button color="primary" variant="raised" type="submit">
+          <FormHelperText error={true}>{errors.password}</FormHelperText>
+
+          <Button
+            style={{ marginTop: 20 }}
+            color="primary"
+            variant="raised"
+            type="submit"
+          >
             Login
           </Button>
         </Form>
@@ -49,6 +71,22 @@ export default class Login extends Component {
     )
   }
 }
+
+Login.prototypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+}
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors,
+})
+
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login)
 
 const LoginWrapper = styled.div`
   height: calc(100vh - 120px);
@@ -65,8 +103,5 @@ const Form = styled.form`
   height: 600px;
   h1 {
     margin-bottom: 0px;
-  }
-  div {
-    margin-bottom: 10px;
   }
 `

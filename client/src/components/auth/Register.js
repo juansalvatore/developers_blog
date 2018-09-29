@@ -6,8 +6,7 @@ import { registerUser } from '../../actions/authActions'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
-import { TextField, Button } from '@material-ui/core/'
-import FormHelperText from '@material-ui/core/FormHelperText'
+import { TextField, Button, FormHelperText } from '@material-ui/core/'
 
 class Register extends Component {
   state = {
@@ -105,6 +104,7 @@ class Register extends Component {
 Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -133,7 +133,5 @@ const Form = styled.form`
   height: 600px;
   h1 {
     margin-bottom: 0px;
-  }
-  div {
   }
 `

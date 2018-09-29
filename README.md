@@ -64,9 +64,9 @@
   - [x] Add state to Login
   - [x] Error handling
   - [x] Redux store and chrome extension setup
-  - [ ] Add Redux to registration
-  - [ ] Add Redux to login
-  - [ ] Login form functionality
+  - [x] Add Redux to registration
+  - [x] Add Redux to login
+  - [x] Login form functionality
   - [ ] Logout and conditional navbar
 
 - [ ] Dashboard and profile...

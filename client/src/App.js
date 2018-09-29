@@ -10,6 +10,24 @@ import Landing from 'components/layout/Landing'
 import Register from 'components/auth/Register'
 import Login from 'components/auth/Login'
 
+/*
+  Test's every time a user reloads the page if 
+  the auth token is in localStorage
+*/
+import jwt_decode from 'jwt-decode'
+import setAuthtoken from './utils/setAuthToken'
+import { setCurrentUser } from './actions/authActions'
+
+// Check for token
+if (localStorage.jwtToken) {
+  // Set auth token header
+  setAuthtoken(localStorage.jwtToken)
+  // Decode token and get user info and expiration
+  const decoded = jwt_decode(localStorage.jwtToken)
+  // Set user and isAuthenticated
+  store.dispatch(setCurrentUser(decoded))
+}
+
 class App extends Component {
   render() {
     return (
