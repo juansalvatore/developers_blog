@@ -55,7 +55,7 @@
   - [x] Create basic layout files
   - [x] Style navbar, footer and landing
 
-- [ ] React Router + Register + Login
+- [x] React Router + Register + Login
 
   - [x] Create landing, register and login routes
   - [x] Create Register form
@@ -67,7 +67,7 @@
   - [x] Add Redux to registration
   - [x] Add Redux to login
   - [x] Login form functionality
-  - [ ] Logout and conditional navbar
+  - [x] Logout and conditional navbar
 
 - [ ] Dashboard and profile...
 
