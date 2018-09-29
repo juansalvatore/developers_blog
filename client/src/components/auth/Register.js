@@ -1,19 +1,27 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+// Unoirt actions
+import { registerUser } from '../../actions/authActions'
 // Styling
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
 import { TextField, Button } from '@material-ui/core/'
 import FormHelperText from '@material-ui/core/FormHelperText'
 
-// HTTP requests (AXIOS)
-import axios from 'axios'
-
-export default class Register extends Component {
+class Register extends Component {
   state = {
     name: '',
     email: '',
     password: '',
     password2: '',
     errors: {},
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors })
+    }
   }
 
   onChange = e => {
@@ -29,15 +37,9 @@ export default class Register extends Component {
       password: this.state.password,
       password2: this.state.password2,
     }
-    // We added: "proxy": "http://localhost:5000" to package.json
-    // There is no need to add the rest of the route
-    axios
-      .post('/api/users/register', newUser)
-      .then(res => console.log(res.data))
-      .catch(err => {
-        this.setState({ errors: err.response.data })
-        console.log(this.state.errors)
-      })
+
+    // Call action registerUser in authActions.js
+    this.props.registerUser(newUser, this.props.history)
   }
 
   render() {
@@ -47,6 +49,7 @@ export default class Register extends Component {
         <Form onSubmit={this.onSubmit}>
           <h1>Sign Up</h1>
           <p>Create your DevConnector account</p>
+
           <TextField
             name="name"
             label="Name"
@@ -74,6 +77,7 @@ export default class Register extends Component {
             error={errors.password ? true : false}
           />
           <FormHelperText error={true}>{errors.password}</FormHelperText>
+
           <TextField
             name="password2"
             label="Confirm Password"
@@ -98,6 +102,22 @@ export default class Register extends Component {
   }
 }
 
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+}
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors,
+})
+
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(withRouter(Register))
+
+// Styles
 const RegisterWrapper = styled.div`
   height: calc(100vh - 120px);
   display: flex;
