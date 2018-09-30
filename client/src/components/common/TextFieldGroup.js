@@ -1,5 +1,6 @@
 import React from 'react'
 import { TextField, FormHelperText } from '@material-ui/core/'
+import styled from 'styled-components'
 
 import PropTypes from 'prop-types'
 
@@ -13,7 +14,7 @@ const TextFieldGroup = ({
   disabled,
 }) => {
   return (
-    <div>
+    <Wrapper>
       <TextField
         name={name}
         label={label}
@@ -24,18 +25,27 @@ const TextFieldGroup = ({
         disabled={disabled ? true : false}
       />
       <FormHelperText error={true}>{error}</FormHelperText>
-    </div>
+    </Wrapper>
   )
 }
 
 TextFieldGroup.propTypes = {
   name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,,
-  value: PropTypes.string.isRequired,,
-  type: PropTypes.string.isRequired,,
-  onChange: PropTypes.func.isRequired,,
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   error: PropTypes.string,
-  disabled: PropTypes.bool,,
+  disabled: PropTypes.bool,
 }
+
+TextFieldGroup.defaultProps = {
+  type: 'text',
+}
+
+const Wrapper = styled.span`
+  display: flex;
+  flex-direction: column;
+`
 
 export default TextFieldGroup

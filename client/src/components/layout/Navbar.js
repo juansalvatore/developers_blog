@@ -7,13 +7,20 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 // Import actions
 import { logoutUser } from '../../actions/authActions'
+import { clearCurrentProfile } from '../../actions/profileActions'
 
 class Navbar extends Component {
+  onLogoutClick = e => {
+    e.preventDefault()
+    this.props.logoutUser()
+    this.props.clearCurrentProfile()
+  }
+
   render() {
     const { isAuthenticated } = this.props.auth
 
     const authLinks = (
-      <a style={{ textDecoration: 'none' }} onClick={this.props.logoutUser}>
+      <a style={{ textDecoration: 'none' }} onClick={this.onLogoutClick}>
         <Button>LogOut</Button>
       </a>
     )
@@ -52,7 +59,10 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logoutUser }
+  {
+    logoutUser,
+    clearCurrentProfile,
+  }
 )(Navbar)
 
 /*
@@ -62,7 +72,7 @@ export default connect(
 */
 
 const Nav = styled.nav`
-  position: fixed;
+  position: relative;
   background-color: white;
   width: 100%;
   height: 60px;

@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import { loginUser } from '../../actions/authActions'
 
 import styled from 'styled-components'
-import { TextField, Button, FormHelperText } from '@material-ui/core/'
+import { Button } from '@material-ui/core/'
+import TextFieldGroup from '../common/TextFieldGroup'
 
 class Login extends Component {
   state = {
@@ -47,22 +48,23 @@ class Login extends Component {
         <Form onSubmit={this.onSubmit}>
           <h1>Login</h1>
           <p>Login with your DevConnector account</p>
-          <TextField
+
+          <TextFieldGroup
             name="email"
             label="Email Adress"
             value={this.state.email}
             onChange={this.onChange}
+            error={errors.email}
           />
-          <FormHelperText error={true}>{errors.email}</FormHelperText>
 
-          <TextField
+          <TextFieldGroup
             name="password"
             label="Password"
             type="password"
             value={this.state.password}
             onChange={this.onChange}
+            error={errors.password}
           />
-          <FormHelperText error={true}>{errors.password}</FormHelperText>
 
           <Button
             style={{ marginTop: 20 }}

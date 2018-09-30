@@ -6,7 +6,8 @@ import { registerUser } from '../../actions/authActions'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
-import { TextField, Button, FormHelperText } from '@material-ui/core/'
+import { Button } from '@material-ui/core/'
+import TextFieldGroup from '../common/TextFieldGroup'
 
 class Register extends Component {
   state = {
@@ -48,50 +49,46 @@ class Register extends Component {
   }
 
   render() {
-    const { name, email, password, password2, errors } = this.state
+    const { errors } = this.state
     return (
       <RegisterWrapper>
         <Form onSubmit={this.onSubmit}>
           <h1>Sign Up</h1>
           <p>Create your DevConnector account</p>
 
-          <TextField
+          <TextFieldGroup
             name="name"
             label="Name"
-            value={name}
+            value={this.state.name}
             onChange={this.onChange}
-            error={errors.name ? true : false}
+            error={errors.name}
           />
-          <FormHelperText error={true}>{errors.name}</FormHelperText>
 
-          <TextField
+          <TextFieldGroup
             name="email"
-            label="Email Adress"
-            value={email}
+            label="Email"
+            value={this.state.email}
             onChange={this.onChange}
-            error={errors.email ? true : false}
+            error={errors.email}
           />
-          <FormHelperText error={true}>{errors.email}</FormHelperText>
 
-          <TextField
+          <TextFieldGroup
             name="password"
             label="Password"
             type="password"
-            value={password}
+            value={this.state.password}
             onChange={this.onChange}
-            error={errors.password ? true : false}
+            error={errors.password}
           />
-          <FormHelperText error={true}>{errors.password}</FormHelperText>
 
-          <TextField
+          <TextFieldGroup
             name="password2"
             label="Confirm Password"
             type="password"
-            value={password2}
+            value={this.state.password2}
             onChange={this.onChange}
-            error={errors.password2 ? true : false}
+            error={errors.password2}
           />
-          <FormHelperText error={true}>{errors.password2}</FormHelperText>
 
           <Button
             style={{ marginTop: 20 }}

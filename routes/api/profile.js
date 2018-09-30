@@ -12,12 +12,7 @@ const validateEducationInput = require('../../validation/education')
 const User = require('../../models/User')
 const Profile = require('../../models/Profile')
 
-// @route   GET api/profile/test
-// @desc    Test profile route
-// @access  Public
-router.get('/test', (req, res) => res.json({ test: 'Profile works!' }))
-
-// @route   GET api/profile/test
+// @route   GET api/profile/
 // @desc    get user profile
 // @access  Protected
 router.get(
@@ -38,7 +33,7 @@ router.get(
   }
 )
 
-// @route   POST api/profile/test
+// @route   POST api/profile/
 // @desc    Create or edit user profile
 // @access  Protected
 router.post(
