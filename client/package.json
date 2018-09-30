@@ -1,6 +1,9 @@
 {
   "name": "dev_blog",
   "version": "0.1.0",
+  "engines": {
+    "node": "9.3.0"
+  },
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.1.1",
