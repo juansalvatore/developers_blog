@@ -17,7 +17,7 @@
 
 ### Users
 
-Create a new user (public): <b>```POST api/users/register```</b><br/>
+Create a new user (public): <b>```POST /api/users/register```</b><br/>
 ```
 {
     "name": "Bort",
@@ -26,14 +26,14 @@ Create a new user (public): <b>```POST api/users/register```</b><br/>
     "password2": "123456"
 }
 ```
-Login User / Returning JWT Token (public): <b>```POST api/users/login```</b><br/>
+Login User / Returning JWT Token (public): <b>```POST /api/users/login```</b><br/>
 ```
 {
     "email": "bort@mail.com",
     "password": "123456"
 }
 ```
-Return current user (protected): <b>```GET api/users/current```</b><br/>
+Return current user (protected): <b>```GET /api/users/current```</b><br/>
 ```
 {
   "Autorization": "JWT_TOKEN"
@@ -51,10 +51,10 @@ Create or edit user profile (protected): <b>```POST /api/profile```</b><br/>
     "skills": "I code in Basic"
 }
 ```
-Get array of profiles (public): <b>```GET api/profile/all```</b><br/><br/>
-Get profile by handle (public): <b>```GET api/profile/handle/:handle```</b><br/><br/>
-Get profile by User ID (public): <b>```GET api/profile/user/:user_id```</b><br/><br/>
-Add experience to profile (protected): <b>```POST api/profile/experience```</b><br/>
+Get array of profiles (public): <b>```GET /api/profile/all```</b><br/><br/>
+Get profile by handle (public): <b>```GET /api/profile/handle/:handle```</b><br/><br/>
+Get profile by User ID (public): <b>```GET /api/profile/user/:user_id```</b><br/><br/>
+Add experience to profile (protected): <b>```POST /api/profile/experience```</b><br/>
 ```
 {
     "title": "Software developer",
@@ -62,7 +62,7 @@ Add experience to profile (protected): <b>```POST api/profile/experience```</b><
     "from": "1-11-14"
 }
 ```
-Add education to profile (protected): <b>```POST api/profile/education```</b><br/>
+Add education to profile (protected): <b>```POST /api/profile/education```</b><br/>
 ```
 {
     "school": "UBA",
@@ -72,8 +72,8 @@ Add education to profile (protected): <b>```POST api/profile/education```</b><br
     "to":"1-10-18"
 }
 ```
-Delete experience from profile (protected): <b>```DELETE api/profile/experience/:exp_id```</b><br/><br/>
-Delete currently logged in user and profile (protected): <b>```DELETE api/profile```</b><br/><br/>
+Delete experience from profile (protected): <b>```DELETE /api/profile/experience/:exp_id```</b><br/><br/>
+Delete currently logged in user and profile (protected): <b>```DELETE /api/profile```</b><br/><br/>
 
 ### Posts
 
