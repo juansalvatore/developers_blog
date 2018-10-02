@@ -32,7 +32,7 @@ Return current user (protected): <b>```GET api/users/current```</b><br/>
 ### Profile
 
 Get user profile (public): <b>```GET /api/profile```</b><br/><br/>
-Create or edit user profile (protected): <b>```POST /api/profile```</b><br/><br/>
+Create or edit user profile (protected): <b>```POST /api/profile```</b><br/>
 ```
 {
     "handle": "bort",
@@ -69,7 +69,7 @@ Delete currently logged in user and profile (protected): <b>```DELETE api/profil
 Get all posts (public): <b>```GET /api/posts```</b><br/><br/>
 Get user posts by id (public): <b>```GET /api/posts/:id```</b><br/><br/>
 Delete user posts by id (protected): <b>```DELETE /api/posts/:id```</b><br/><br/>
-Create user post (protected): <b>```POST /api/posts```</b><br/><br/>
+Create user post (protected): <b>```POST /api/posts```</b><br/>
 ```
 {
 	"text": "This is my first post!"
@@ -77,7 +77,7 @@ Create user post (protected): <b>```POST /api/posts```</b><br/><br/>
 ```
 Like a post (protected): <b>```POST /api/posts/like/:id```</b><br/><br/>
 Unlike a post (protected): <b>```POST /api/posts/unlike/:id```</b><br/><br/>
-Post a comment (protected): <b>```POST /api/posts/comment/:id```</b><br/><br/>
+Post a comment (protected): <b>```POST /api/posts/comment/:id```</b><br/>
 ```
 {
 	"text": "This is my first comment!"
