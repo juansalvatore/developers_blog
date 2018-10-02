@@ -2,6 +2,17 @@
 
 ### Connect with programmer friends around the globe 🌏
 
+
+## Tech
+
+- [Reactjs](https://reactjs.org/) - JavaScript library for building user interfaces
+- [Redux](https://redux.js.org/) - Predictable state container for JavaScript apps
+- [styled-components](https://www.styled-components.com/) - Visual primitives for the component age 💅
+- [Material-UI](https://material-ui.com/) - React components that implement Google's Material Design.
+- [node.js](https://nodejs.org/) - JavaScript runtime built on Chrome's V8 JavaScript engine.
+- [Express](https://expressjs.com/) - Web framework for Node.js
+- [MongoDB](https://www.mongodb.com/) - Document database
+
 ## API Routes 
 
 ### Users
@@ -85,16 +96,6 @@ Post a comment (protected): <b>```POST /api/posts/comment/:id```</b><br/>
 ```
 Delete a comment (protected): <b>```DELETE /api/posts/comment/:id```</b><br/><br/>
 
-
-## Tech
-
-- [Reactjs](https://reactjs.org/) - JavaScript library for building user interfaces
-- [Redux](https://redux.js.org/) - Predictable state container for JavaScript apps
-- [styled-components](https://www.styled-components.com/) - Visual primitives for the component age 💅
-- [Material-UI](https://material-ui.com/) - React components that implement Google's Material Design.
-- [node.js](https://nodejs.org/) - JavaScript runtime built on Chrome's V8 JavaScript engine.
-- [Express](https://expressjs.com/) - Web framework for Node.js
-- [MongoDB](https://www.mongodb.com/) - Document database
 
 ## ToDo
 
