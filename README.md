@@ -6,18 +6,51 @@
 
 ### Users
 
-Create a new user (public): <b>```POST api/users/register```</b><br/><br/>
-Login User / Returning JWT Token (public): <b>```POST api/users/login```</b><br/><br/>
-Return current user (protected): <b>```GET api/users/current```</b><br/><br/>
+Create a new user (public): <b>```POST api/users/register```</b><br/>
+```
+{
+    "name": "Bort",
+    "email": "bort@mail.com",
+    "password": "123456",
+    "password2": "123456"
+}
+```
+Login User / Returning JWT Token (public): <b>```POST api/users/login```</b><br/>
+```
+{
+    "email": "bort@mail.com",
+    "password": "123456"
+}
+```
+Return current user (protected): <b>```GET api/users/current```</b><br/>
+```
+{
+  "Autorization": "JWT_TOKEN"
+}
+```
   
 ### Profile
 
 Get user profile (public): <b>```GET /api/profile```</b><br/><br/>
 Create or edit user profile (protected): <b>```POST /api/profile```</b><br/><br/>
+```
+{
+    "handle": "bort",
+    "status": "Working as a developer",
+    "skills": "I code in Basic"
+}
+```
 Get array of profiles (public): <b>```GET api/profile/all```</b><br/><br/>
 Get profile by handle (public): <b>```GET api/profile/handle/:handle```</b><br/><br/>
 Get profile by User ID (public): <b>```GET api/profile/user/:user_id```</b><br/><br/>
 Add experience to profile (protected): <b>```POST api/profile/experience```</b><br/><br/>
+```
+{
+    "title": "Software developer",
+    "company": "Pied Piper",
+    "from": "1-11-14"
+}
+```
 Add education to profile (protected): <b>```POST api/profile/education```</b><br/><br/>
 Delete experience from profile (protected): <b>```DELETE api/profile/experience/:exp_id```</b><br/><br/>
 Delete user and profile (protected): <b>```DELETE api/profile```</b><br/><br/>
