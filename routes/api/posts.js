@@ -11,8 +11,8 @@ const validatePostInput = require('../../validation/post')
 
 router.get('/test', (req, res) => res.json({ test: 'Posts work' }))
 
-// @route   GET api/post
-// @desc    Get users profile
+// @route   GET api/posts
+// @desc    Get all posts
 // @access  Public
 router.get('/', (req, res) => {
   Post.find({})
@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
     .catch(err => res.status(404).json({ nopostfound: 'No posts found' }))
 })
 
-// @route   GET api/post/:id
+// @route   GET api/posts/:id
 // @desc    Get user posts by id
 // @access  Public
 router.get('/:id', (req, res) => {
@@ -32,7 +32,7 @@ router.get('/:id', (req, res) => {
     )
 })
 
-// @route   DELETE api/post/:id
+// @route   DELETE api/posts/:id
 // @desc    Delete user posts by id
 // @access  Private
 router.delete(
@@ -55,7 +55,7 @@ router.delete(
   }
 )
 
-// @route   POST api/post
+// @route   POST api/posts
 // @desc    Create or edit user profile
 // @access  Protected
 router.post(
@@ -79,7 +79,7 @@ router.post(
   }
 )
 
-// @route   POST api/post/like/:id
+// @route   POST api/posts/like/:id
 // @desc    Like post
 // @access  Private
 router.post(
@@ -106,7 +106,7 @@ router.post(
   }
 )
 
-// @route   POST api/post/like/:id
+// @route   POST api/posts/unlike/:id
 // @desc    Unlike post
 // @access  Private
 router.post(
@@ -160,7 +160,7 @@ router.post(
   }
 )
 
-// @route   POST api/posts/comment/:id
+// @route   DELETE api/posts/comment/:id
 // @desc    Delete a comment
 // @access  Private
 router.delete(
