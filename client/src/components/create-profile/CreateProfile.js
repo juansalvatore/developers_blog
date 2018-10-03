@@ -8,10 +8,34 @@ import {
   NativeSelect,
   InputLabel,
   FormHelperText,
+  Button,
 } from '@material-ui/core'
+import posed from 'react-pose'
+
+import Twitter from '../../img/icons/twitter-logo-button.svg'
+import Facebook from '../../img/icons/facebook-logo-button.svg'
+import Linkedin from '../../img/icons/linkedin-logo-button.svg'
+import YouTube from '../../img/icons/youtube-logo-button.svg'
 import Instagram from '../../img/icons/instagram-logo.svg'
 
 import styled from 'styled-components'
+
+const Social = posed.div({
+  open: {
+    delayChildren: 200,
+    staggerChildren: 50,
+    height: '270px',
+  },
+  closed: {
+    height: '0px',
+    delay: 300,
+  },
+})
+
+const Item = posed.div({
+  open: { y: 0, opacity: 1 },
+  closed: { y: 20, opacity: 0 },
+})
 
 class CreateProfile extends Component {
   state = {
@@ -30,6 +54,7 @@ class CreateProfile extends Component {
     youtube: '',
     instagram: '',
     errors: {},
+    isOpen: false,
   }
 
   onSubmit = e => {
@@ -44,6 +69,8 @@ class CreateProfile extends Component {
   onSelect = e => {
     this.setState({ status: e.target.value })
   }
+
+  toggle = () => this.setState({ isOpen: !this.state.isOpen })
 
   render() {
     const { errors } = this.state
@@ -71,6 +98,10 @@ class CreateProfile extends Component {
             onChange={this.onChange}
             error={errors.handle}
           />
+          <FormHelperText style={{ marginTop: '-12px' }}>
+            A unique handle for your profile URL. Your full name, company name,
+            nickname
+          </FormHelperText>
           <Space>
             <InputLabel>Status</InputLabel>
             <NativeSelect
@@ -106,14 +137,13 @@ class CreateProfile extends Component {
           />
           <TextFieldGroup
             name="skills"
-            label="Skills"
+            label="* Skills"
             value={this.state.skills}
             onChange={this.onChange}
           />
           <FormHelperText style={{ marginTop: '-12px' }}>
             Please use comma separated values (eg: HTML,CSS,JavaScript,PHP)
           </FormHelperText>
-
           <div
             style={{
               position: 'relative',
@@ -141,16 +171,86 @@ class CreateProfile extends Component {
             value={this.state.githubusername}
             onChange={this.onChange}
           />
-          <TextField
-            style={{ width: '100%', marginTop: '20px' }}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <img src={Instagram} width={25} alt="Instagram" />
-                </InputAdornment>
-              ),
-            }}
-          />
+          <Button
+            style={{ marginTop: 20, maxWidth: '200px' }}
+            color="default"
+            variant="raised"
+            onClick={this.toggle}
+          >
+            Social Media
+          </Button>
+
+          <Social pose={this.state.isOpen ? 'open' : 'closed'}>
+            <Item className="item">
+              <TextField
+                style={{ width: '100%', marginTop: '20px' }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <img src={Twitter} width={25} alt="Twitter" />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Item>
+            <Item className="item">
+              <TextField
+                style={{ width: '100%', marginTop: '20px' }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <img src={Facebook} width={25} alt="Facebook" />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Item>
+            <Item className="item">
+              <TextField
+                style={{ width: '100%', marginTop: '20px' }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <img src={Linkedin} width={25} alt="Linkedin" />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Item>
+            <Item className="item">
+              <TextField
+                style={{ width: '100%', marginTop: '20px' }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <img src={YouTube} width={25} alt="YouTube" />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Item>
+            <Item className="item">
+              <TextField
+                style={{ width: '100%', marginTop: '20px' }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <img src={Instagram} width={25} alt="Instagram" />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Item>
+          </Social>
+          <Button
+            style={{ marginTop: 20, display: 'flex' }}
+            color="primary"
+            variant="raised"
+            onSubmit={this.onSubmit}
+            type="submit"
+          >
+            Submit
+          </Button>
         </Form>
       </CreateProfileWrapper>
     )
@@ -183,6 +283,8 @@ const Space = styled.div`
 const Form = styled.form`
   padding: 20px;
   flex: 1;
+  display: flex;
+  flex-direction: column;
   max-width: 800px;
 `
 
