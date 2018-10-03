@@ -29,7 +29,7 @@ module.exports = function validateRegisterInput(data) {
   }
 
   if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
-    errors.password = 'Password must be beaween 2 and 30 characters'
+    errors.password = 'Password must be beaween 6 and 30 characters'
   }
 
   if (Validator.isEmpty(data.password2)) {
