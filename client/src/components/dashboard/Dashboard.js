@@ -35,7 +35,7 @@ export class Dashboard extends Component {
           <div>
             <p>Welcome {user.name}</p>
             <p>You have not yet set up a profile, please add some info</p>
-            <Link to="/create-profile">
+            <Link to="/create-profile" style={{ textDecoration: 'none' }}>
               <Button
                 style={{ marginTop: 20 }}
                 color="primary"
