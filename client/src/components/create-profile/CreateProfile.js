@@ -6,7 +6,6 @@ import {
   TextField,
   InputAdornment,
   NativeSelect,
-  InputLabel,
   FormHelperText,
   Button,
 } from '@material-ui/core'
@@ -103,13 +102,14 @@ class CreateProfile extends Component {
             nickname
           </FormHelperText>
           <Space>
-            <InputLabel>Status</InputLabel>
             <NativeSelect
               onChange={this.onSelect}
               style={{ display: 'flex' }}
               defaultValue="none"
             >
-              <option value="none" disabled />
+              <option value="none" disabled>
+                Status
+              </option>
               {options.map(option => (
                 <option key={option.value} value={option.value}>
                   {option.label}
@@ -171,13 +171,23 @@ class CreateProfile extends Component {
             value={this.state.githubusername}
             onChange={this.onChange}
           />
+
+          <TextField
+            multiline
+            name="bio"
+            label="Short Bio"
+            rowsMax="8"
+            value={this.state.bio}
+            onChange={this.onChange}
+          />
+
           <Button
             style={{ marginTop: 20, maxWidth: '200px' }}
             color="default"
             variant="raised"
             onClick={this.toggle}
           >
-            Social Media
+            Social Networks
           </Button>
 
           <Social pose={this.state.isOpen ? 'open' : 'closed'}>
