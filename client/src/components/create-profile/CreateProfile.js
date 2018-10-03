@@ -108,7 +108,7 @@ class CreateProfile extends Component {
               defaultValue="none"
             >
               <option value="none" disabled>
-                Status
+                * Select Profesional Status
               </option>
               {options.map(option => (
                 <option key={option.value} value={option.value}>
@@ -182,12 +182,12 @@ class CreateProfile extends Component {
           />
 
           <Button
-            style={{ marginTop: 20, maxWidth: '200px' }}
+            style={{ marginTop: 20, maxWidth: '250px' }}
             color="default"
             variant="raised"
             onClick={this.toggle}
           >
-            Social Networks
+            Add Social Network Links
           </Button>
 
           <Social pose={this.state.isOpen ? 'open' : 'closed'}>
