@@ -113,6 +113,7 @@ class CreateProfile extends Component {
           <FormHelperText style={{ marginTop: '-12px' }}>
             Please use comma separated values (eg: HTML,CSS,JavaScript,PHP)
           </FormHelperText>
+
           <div
             style={{
               position: 'relative',
