@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 // Import actions
 import { logoutUser } from '../../actions/authActions'
 import { clearCurrentProfile } from '../../actions/profileActions'
+import Planet from '../../img/icons/planet-earth.png'
 
 class Navbar extends Component {
   onLogoutClick = e => {
@@ -38,8 +39,13 @@ class Navbar extends Component {
 
     return (
       <Nav>
+        <img src={Planet} style={{ width: 30, marginRight: 10 }} />
+
         <Link style={{ textDecoration: 'none' }} to="/">
-          <Logo>DevConnector</Logo>
+          <Logo>
+            Dev
+            <span style={{ color: 'rgb(245, 173, 57)' }}>Connector</span>
+          </Logo>
         </Link>
         <Button first>Developers</Button>
         {isAuthenticated ? authLinks : guestLinks}
@@ -79,10 +85,13 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   padding-left: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+  // background-color: rgba(240, 245, 248);
 `
 
 const Logo = styled.span`
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.9);
   font-weight: 600;
   font-size: 22px;
   :hover {

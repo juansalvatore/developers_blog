@@ -88,8 +88,11 @@ class CreateProfile extends Component {
     return (
       <CreateProfileWrapper>
         <Form onSubmit={this.onSubmit}>
-          <h1>Create Your Profile</h1>
-          <p>Lets get some information to make your profile stand out!</p>
+          <Title>Create Your Profile</Title>
+          <Subtitle>
+            Lets get some information to make your profile stand out!
+          </Subtitle>
+          <DividerLine />
           <TextFieldGroup
             name="handle"
             label="* Profile Handle"
@@ -181,14 +184,14 @@ class CreateProfile extends Component {
             onChange={this.onChange}
           />
 
-          <Button
-            style={{ marginTop: 20, maxWidth: '250px' }}
+          <ToggleSocialButton
+            style={{ marginTop: 60, maxWidth: '250px' }}
             color="default"
             variant="raised"
             onClick={this.toggle}
           >
             Add Social Network Links
-          </Button>
+          </ToggleSocialButton>
 
           <Social pose={this.state.isOpen ? 'open' : 'closed'}>
             <Item className="item">
@@ -252,15 +255,15 @@ class CreateProfile extends Component {
               />
             </Item>
           </Social>
-          <Button
-            style={{ marginTop: 20, display: 'flex' }}
+          <DividerLine />
+          <SubmitButton
             color="primary"
             variant="raised"
             onSubmit={this.onSubmit}
             type="submit"
           >
             Submit
-          </Button>
+          </SubmitButton>
         </Form>
       </CreateProfileWrapper>
     )
@@ -282,20 +285,47 @@ export default connect(
   {}
 )(CreateProfile)
 
+const Title = styled.h1`
+  margin-top: 10px;
+  margin-bottom: 0;
+`
+
+const Subtitle = styled.p`
+  color: rgba(0, 0, 0, 0.7);
+`
+
+const DividerLine = styled.span`
+  width: calc(100% + 80px);
+  height: 2px;
+  margin-left: -40px;
+  background-color: rgba(215, 221, 225, 0.6);
+  margin-bottom: 40px;
+  margin-top: 40px;
+`
+
 const CreateProfileWrapper = styled.div`
   display: flex;
   justify-content: center;
+  padding-bottom: 200px;
+  padding-left: 20px;
+  padding-right: 20px;
 `
 const Space = styled.div`
   margin-bottom: 15px;
-  margin-top: 10px;
+  margin-top: 30px;
 `
 const Form = styled.form`
-  padding: 20px;
+  padding: 40px;
   flex: 1;
   display: flex;
   flex-direction: column;
   max-width: 800px;
+  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.15);
+  position: relative;
+  border-radius: 10px;
+  top: 50px;
+  background-color: white;
+  border: 1px solid rgba(215, 221, 225, 0.6);
 `
 
 const Skill = styled.span`
@@ -305,4 +335,14 @@ const Skill = styled.span`
   border-radius: 5px;
   margin-right: 5px;
   margin-bottom: 5px;
+`
+
+const ToggleSocialButton = styled(Button)`
+  background-color: rgb(71, 94, 240, 0.2) !important;
+  margin-top: 60px;
+  max-width: 250px;
+`
+
+const SubmitButton = styled(Button)`
+  background-color: rgb(71, 94, 240) !important;
 `
