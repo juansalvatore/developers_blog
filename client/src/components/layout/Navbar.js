@@ -9,12 +9,23 @@ import { connect } from 'react-redux'
 import { logoutUser } from '../../actions/authActions'
 import { clearCurrentProfile } from '../../actions/profileActions'
 import Planet from '../../img/icons/planet-earth.png'
+import HamburgerMenu from 'react-hamburger-menu'
 
 class Navbar extends Component {
+  state = {
+    open: false,
+  }
+
   onLogoutClick = e => {
     e.preventDefault()
     this.props.logoutUser()
     this.props.clearCurrentProfile()
+  }
+
+  handleClick = () => {
+    this.setState({
+      open: !this.state.open,
+    })
   }
 
   render() {
@@ -39,7 +50,11 @@ class Navbar extends Component {
 
     return (
       <Nav>
-        <img src={Planet} style={{ width: 30, marginRight: 10 }} />
+        <img
+          src={Planet}
+          style={{ width: 30, marginRight: 10 }}
+          alt="DevConnector"
+        />
 
         <Link style={{ textDecoration: 'none' }} to="/">
           <Logo>
@@ -47,8 +62,25 @@ class Navbar extends Component {
             <span style={{ color: 'rgb(245, 173, 57)' }}>Connector</span>
           </Logo>
         </Link>
-        <Button first>Developers</Button>
-        {isAuthenticated ? authLinks : guestLinks}
+
+        <MobileButtons>
+          <HamburgerMenu
+            isOpen={this.state.open}
+            menuClicked={this.handleClick}
+            width={20}
+            height={15}
+            strokeWidth={2}
+            rotate={0}
+            color="black"
+            borderRadius={0}
+            animationDuration={0.5}
+          />
+        </MobileButtons>
+
+        <DesktopButtons>
+          <Button first>Developers</Button>
+          {isAuthenticated ? authLinks : guestLinks}
+        </DesktopButtons>
       </Nav>
     )
   }
@@ -108,5 +140,22 @@ const Button = styled.span`
   :hover {
     cursor: pointer;
     color: rgba(0, 0, 0, 0.4);
+  }
+`
+
+const DesktopButtons = styled.div`
+  display: flex;
+  flex-direction: row;
+  @media (max-width: 700px) {
+    display: none;
+  }
+`
+
+const MobileButtons = styled.div`
+  position: absolute;
+  right: 20px;
+  display: none;
+  @media (max-width: 700px) {
+    display: block;
   }
 `
