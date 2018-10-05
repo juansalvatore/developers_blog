@@ -34,20 +34,21 @@ class Landing extends Component {
           params={{
             particles: {
               number: {
-                value: 150,
+                value: 70,
               },
               size: {
-                value: 3,
+                value: 2,
               },
               color: {
-                value: '#ccc',
+                value: '#3eade0',
+                opacity: 0.1,
+              },
+              line_linked: {
+                color: '#3eade0',
+                opacity: 0.3,
               },
             },
-            stroke: {
-              color: {
-                value: '#ccc',
-              },
-            },
+
             interactivity: {
               events: {
                 onhover: {
@@ -103,7 +104,6 @@ export default connect(
 
 const LandingWrapper = styled.div`
   position: absolute;
-  top: 0px;
   z-index: -1;
   width: 100%;
   text-align: center;
