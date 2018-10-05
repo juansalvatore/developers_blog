@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import TextFieldGroup from '../common/TextFieldGroup'
 import {
@@ -11,30 +12,16 @@ import {
 } from '@material-ui/core'
 import posed from 'react-pose'
 
-import Twitter from '../../img/icons/twitter-logo-button.svg'
-import Facebook from '../../img/icons/facebook-logo-button.svg'
-import Linkedin from '../../img/icons/linkedin-logo-button.svg'
-import YouTube from '../../img/icons/youtube-logo-button.svg'
-import Instagram from '../../img/icons/instagram-logo.svg'
+import twitter from '../../img/icons/twitter-logo-button.svg'
+import facebook from '../../img/icons/facebook-logo-button.svg'
+import linkedin from '../../img/icons/linkedin-logo-button.svg'
+import youtube from '../../img/icons/youtube-logo-button.svg'
+import instagram from '../../img/icons/instagram-logo.svg'
 
 import styled from 'styled-components'
 
-const Social = posed.div({
-  open: {
-    delayChildren: 200,
-    staggerChildren: 50,
-    height: '270px',
-  },
-  closed: {
-    height: '0px',
-    delay: 300,
-  },
-})
-
-const Item = posed.div({
-  open: { y: 0, opacity: 1 },
-  closed: { y: 20, opacity: 0 },
-})
+// Import actions
+import { createProfile } from '../../actions/profileActions'
 
 class CreateProfile extends Component {
   state = {
@@ -56,9 +43,30 @@ class CreateProfile extends Component {
     isOpen: false,
   }
 
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors })
+    }
+  }
+
   onSubmit = e => {
     e.preventDefault()
-    console.log('submit')
+    const profileData = {
+      handle: this.state.handle,
+      company: this.state.company,
+      website: this.state.website,
+      location: this.state.location,
+      status: this.state.status,
+      skills: this.state.skills,
+      githubusername: this.state.githubusername,
+      bio: this.state.bio,
+      twitter: this.state.twitter,
+      facebook: this.state.facebook,
+      linkedin: this.state.linkedin,
+      youtube: this.state.youtube,
+      instagram: this.state.instagram,
+    }
+    this.props.createProfile(profileData, this.props.history)
   }
 
   onChange = e => {
@@ -69,11 +77,40 @@ class CreateProfile extends Component {
     this.setState({ status: e.target.value })
   }
 
+  createSkillBubbles = () => {
+    return this.state.skills.split(',').map((skill, i) => (
+      <Skill
+        key={i}
+        string={skill}
+        style={skill === '' ? { display: 'none' } : { display: 'inline-block' }}
+      >
+        {skill}
+      </Skill>
+    ))
+  }
+
   toggle = () => this.setState({ isOpen: !this.state.isOpen })
+
+  displaySocialNetworkLinks = () => {
+    const social = [twitter, facebook, linkedin, youtube, instagram]
+    return social.map(element => (
+      <Item className="item" key={element}>
+        <TextField
+          style={{ width: '100%', marginTop: '20px' }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <img src={element} width={25} alt={element} />
+              </InputAdornment>
+            ),
+          }}
+        />
+      </Item>
+    ))
+  }
 
   render() {
     const { errors } = this.state
-    console.log(this.state.status)
     // Select options for status
     const options = [
       { label: 'Developer', value: 'Developer' },
@@ -85,6 +122,7 @@ class CreateProfile extends Component {
       { label: 'Intern', value: 'Intern' },
       { label: 'Other', value: 'Other' },
     ]
+
     return (
       <CreateProfileWrapper>
         <Form onSubmit={this.onSubmit}>
@@ -92,18 +130,18 @@ class CreateProfile extends Component {
           <Subtitle>
             Lets get some information to make your profile stand out!
           </Subtitle>
+
           <DividerLine />
+
           <TextFieldGroup
             name="handle"
             label="* Profile Handle"
             value={this.state.handle}
             onChange={this.onChange}
             error={errors.handle}
+            info="A unique handle for your profile URL. Your full name, company name,
+            nickname"
           />
-          <FormHelperText style={{ marginTop: '-12px' }}>
-            A unique handle for your profile URL. Your full name, company name,
-            nickname
-          </FormHelperText>
           <Space>
             <NativeSelect
               onChange={this.onSelect}
@@ -119,62 +157,44 @@ class CreateProfile extends Component {
                 </option>
               ))}
             </NativeSelect>
+            <FormHelperText error={true}>{errors.status}</FormHelperText>
           </Space>
           <TextFieldGroup
             name="company"
             label="Company"
             value={this.state.company}
             onChange={this.onChange}
+            error={errors.company}
           />
           <TextFieldGroup
             name="website"
             label="Website"
             value={this.state.website}
             onChange={this.onChange}
+            error={errors.website}
           />
           <TextFieldGroup
             name="location"
             label="Location"
             value={this.state.location}
             onChange={this.onChange}
+            error={errors.location}
           />
           <TextFieldGroup
             name="skills"
             label="* Skills"
             value={this.state.skills}
             onChange={this.onChange}
+            error={errors.skills}
+            info="Please use comma separated values (eg: HTML,CSS,JavaScript,PHP)"
           />
-          <FormHelperText style={{ marginTop: '-12px' }}>
-            Please use comma separated values (eg: HTML,CSS,JavaScript,PHP)
-          </FormHelperText>
-          <div
-            style={{
-              position: 'relative',
-              marginTop: '10px',
-              marginBottom: '10px',
-            }}
-          >
-            {this.state.skills.split(',').map(skill => (
-              <Skill
-                key={skill}
-                string={skill}
-                style={
-                  skill === ''
-                    ? { display: 'none' }
-                    : { display: 'inline-block' }
-                }
-              >
-                {skill}
-              </Skill>
-            ))}
-          </div>
+          <SkillsWrapper>{this.createSkillBubbles()}</SkillsWrapper>
           <TextFieldGroup
             name="githubusername"
             label="GitHub Username"
             value={this.state.githubusername}
             onChange={this.onChange}
           />
-
           <TextField
             multiline
             name="bio"
@@ -183,7 +203,6 @@ class CreateProfile extends Component {
             value={this.state.bio}
             onChange={this.onChange}
           />
-
           <ToggleSocialButton
             style={{ marginTop: 60, maxWidth: '250px' }}
             color="default"
@@ -192,70 +211,12 @@ class CreateProfile extends Component {
           >
             Add Social Network Links
           </ToggleSocialButton>
-
           <Social pose={this.state.isOpen ? 'open' : 'closed'}>
-            <Item className="item">
-              <TextField
-                style={{ width: '100%', marginTop: '20px' }}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <img src={Twitter} width={25} alt="Twitter" />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Item>
-            <Item className="item">
-              <TextField
-                style={{ width: '100%', marginTop: '20px' }}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <img src={Facebook} width={25} alt="Facebook" />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Item>
-            <Item className="item">
-              <TextField
-                style={{ width: '100%', marginTop: '20px' }}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <img src={Linkedin} width={25} alt="Linkedin" />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Item>
-            <Item className="item">
-              <TextField
-                style={{ width: '100%', marginTop: '20px' }}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <img src={YouTube} width={25} alt="YouTube" />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Item>
-            <Item className="item">
-              <TextField
-                style={{ width: '100%', marginTop: '20px' }}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <img src={Instagram} width={25} alt="Instagram" />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Item>
+            {this.displaySocialNetworkLinks()}
           </Social>
+
           <DividerLine />
+
           <SubmitButton
             color="primary"
             variant="raised"
@@ -273,6 +234,7 @@ class CreateProfile extends Component {
 CreateProfile.propTypes = {
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
+  createProfile: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -282,9 +244,10 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {}
-)(CreateProfile)
+  { createProfile }
+)(withRouter(CreateProfile))
 
+// Styled components
 const Title = styled.h1`
   margin-top: 10px;
   margin-bottom: 0;
@@ -328,6 +291,12 @@ const Form = styled.form`
   border: 1px solid rgba(215, 221, 225, 0.6);
 `
 
+const SkillsWrapper = styled.div`
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`
+
 const Skill = styled.span`
   position: relative;
   background-color: #d0dfff;
@@ -346,3 +315,21 @@ const ToggleSocialButton = styled(Button)`
 const SubmitButton = styled(Button)`
   background-color: rgb(71, 94, 240) !important;
 `
+
+// POSED animations
+const Social = posed.div({
+  open: {
+    delayChildren: 200,
+    staggerChildren: 50,
+    height: '270px',
+  },
+  closed: {
+    height: '0px',
+    delay: 300,
+  },
+})
+
+const Item = posed.div({
+  open: { y: 0, opacity: 1 },
+  closed: { y: 20, opacity: 0 },
+})

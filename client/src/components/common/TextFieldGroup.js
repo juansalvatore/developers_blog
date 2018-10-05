@@ -12,6 +12,7 @@ const TextFieldGroup = ({
   onChange,
   error,
   disabled,
+  info,
 }) => {
   return (
     <Wrapper>
@@ -24,7 +25,12 @@ const TextFieldGroup = ({
         error={error ? true : false}
         disabled={disabled ? true : false}
       />
-      <FormHelperText error={true}>{error}</FormHelperText>
+      <FormHelperText
+        style={{ marginTop: '5px', position: 'relative' }}
+        error={error ? true : false}
+      >
+        {error ? error : info}
+      </FormHelperText>
     </Wrapper>
   )
 }
