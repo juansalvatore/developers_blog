@@ -13,6 +13,7 @@
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-hamburger-menu": "^1.1.1",
+    "react-particles-js": "^2.3.0",
     "react-pose": "^3.3.6",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",

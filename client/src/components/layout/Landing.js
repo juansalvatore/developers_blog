@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 import posed from 'react-pose'
+import Particles from 'react-particles-js'
 
 import Puzzle from '../../img/icons/puzzle.svg'
 
@@ -29,6 +30,40 @@ class Landing extends Component {
   render() {
     return (
       <LandingWrapper>
+        <Particles
+          params={{
+            particles: {
+              number: {
+                value: 50,
+              },
+              size: {
+                value: 3,
+              },
+              color: {
+                value: '#ccc',
+              },
+            },
+            stroke: {
+              color: {
+                value: '#ccc',
+              },
+            },
+            interactivity: {
+              events: {
+                onhover: {
+                  enable: true,
+                  mode: 'repulse',
+                },
+              },
+            },
+          }}
+          style={{
+            width: '100%',
+            height: '100%',
+            position: 'absolute',
+            backgroundImage: ``,
+          }}
+        />
         <Container>
           <HeadIcon src={Puzzle} />
           <Title>Developers Connector</Title>

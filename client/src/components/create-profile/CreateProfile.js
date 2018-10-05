@@ -204,6 +204,7 @@ class CreateProfile extends Component {
             onChange={this.onChange}
           />
           <ToggleSocialButton
+            type="button"
             style={{ marginTop: 60, maxWidth: '250px' }}
             color="default"
             variant="raised"
