@@ -34,7 +34,7 @@ class Landing extends Component {
           params={{
             particles: {
               number: {
-                value: 50,
+                value: 150,
               },
               size: {
                 value: 3,
@@ -58,7 +58,8 @@ class Landing extends Component {
             },
           }}
           style={{
-            width: '100%',
+            left: 0,
+            width: '100',
             height: '100%',
             position: 'absolute',
             backgroundImage: ``,
