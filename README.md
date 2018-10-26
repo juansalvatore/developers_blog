@@ -162,4 +162,4 @@ Delete a comment (protected): <b>```DELETE /api/posts/comment/:id```</b><br/><br
 
 ## License
 
-MIT © **[`Juan Salvatore`](http://juansalvatore.com)**
+MIT © **[`Juan Salvatore`](https://juansalvatore.com)**
