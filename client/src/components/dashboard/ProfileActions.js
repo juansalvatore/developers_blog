@@ -11,7 +11,9 @@ class ProfileActions extends Component {
     return (
       <ProfileActionsWrapper>
         <ButtonsContainer>
-          <Button>Edit Profile</Button>
+          <Link to="/edit-profile">
+            <Button>Edit Profile</Button>
+          </Link>
           <Bar />
           <Button>Add Experience</Button>
           <Bar />

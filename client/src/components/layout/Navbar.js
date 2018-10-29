@@ -32,9 +32,14 @@ class Navbar extends Component {
     const { isAuthenticated } = this.props.auth
 
     const authLinks = (
-      <a style={{ textDecoration: 'none' }} onClick={this.onLogoutClick}>
-        <Button>LogOut</Button>
-      </a>
+      <div>
+        <Link style={{ textDecoration: 'none' }} to="/dashboard">
+          <Button>Dashboard</Button>
+        </Link>
+        <a style={{ textDecoration: 'none' }} onClick={this.onLogoutClick}>
+          <Button>LogOut</Button>
+        </a>
+      </div>
     )
 
     const guestLinks = (
@@ -50,11 +55,7 @@ class Navbar extends Component {
 
     return (
       <Nav>
-        <img
-          src={Planet}
-          style={{ width: 30, marginRight: 10 }}
-          alt="DevConnector"
-        />
+        <img src={Planet} style={{ width: 30, marginRight: 10 }} alt="DevConnector" />
 
         <Link style={{ textDecoration: 'none' }} to="/">
           <Logo>
