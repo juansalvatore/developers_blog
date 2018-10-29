@@ -6,6 +6,7 @@ import { TextField, FormHelperText, Button, Checkbox } from '@material-ui/core'
 import styled from 'styled-components'
 
 import { connect } from 'react-redux'
+import { addExperience } from '../../actions/profileActions'
 import PropTypes from 'prop-types'
 
 class AddExperience extends Component {
@@ -21,6 +22,12 @@ class AddExperience extends Component {
     disabled: false,
   }
 
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors })
+    }
+  }
+
   handleCheckbox = () => {
     this.setState({ disabled: !this.state.disabled })
   }
@@ -29,8 +36,24 @@ class AddExperience extends Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
+  onSubmit = e => {
+    e.preventDefault()
+
+    const expData = {
+      company: this.state.company,
+      title: this.state.title,
+      location: this.state.location,
+      from: this.state.from,
+      to: this.state.to,
+      current: this.state.current,
+      description: this.state.description,
+    }
+    this.props.addExperience(expData, this.props.history)
+  }
+
   render() {
     const { errors, disabled } = this.state
+
     return (
       <CreateProfileWrapper>
         <Form onSubmit={this.onSubmit}>
@@ -64,19 +87,20 @@ class AddExperience extends Component {
             value={this.state.from}
             onChange={this.onChange}
           />
-          <FormHelperText style={{ marginTop: '5px', position: 'relative' }}>From</FormHelperText>
-          {!disabled ? (
-            <div style={{ with: '100%' }}>
-              <TextField
-                style={{ marginTop: '20px', width: '100%' }}
-                type="date"
-                name="to"
-                value={this.state.to}
-                onChange={this.onChange}
-              />
-              <FormHelperText style={{ marginTop: '5px', position: 'relative' }}>To</FormHelperText>
-            </div>
-          ) : null}
+          <FormHelperText error={errors.from} style={{ marginTop: '5px', position: 'relative' }}>
+            {errors.from ? 'Form field is required' : 'From'}
+          </FormHelperText>
+
+          <TextField
+            disabled={disabled}
+            style={{ marginTop: '20px', width: '100%' }}
+            type="date"
+            name="to"
+            value={this.state.to}
+            onChange={this.onChange}
+          />
+          <FormHelperText style={{ marginTop: '5px', position: 'relative' }}>To</FormHelperText>
+
           <span style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', margin: '25px 0 0 -15px' }}>
             <Checkbox color="primary" style={{ position: 'relative' }} onChange={() => this.handleCheckbox()} />
             <span style={{ display: 'inline' }}>Current Job</span>
@@ -105,6 +129,7 @@ class AddExperience extends Component {
 AddExperience.propTypes = {
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
+  addExperience: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -114,7 +139,7 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {}
+  { addExperience }
 )(withRouter(AddExperience))
 
 const CreateProfileWrapper = styled.div`
