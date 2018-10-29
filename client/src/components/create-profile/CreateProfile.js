@@ -243,16 +243,17 @@ const DividerLine = styled.span`
   margin-top: 40px;
 `
 
+const Space = styled.div`
+  margin-bottom: 15px;
+  margin-top: 30px;
+`
+
 const CreateProfileWrapper = styled.div`
   display: flex;
   justify-content: center;
   padding-bottom: 200px;
   padding-left: 20px;
   padding-right: 20px;
-`
-const Space = styled.div`
-  margin-bottom: 15px;
-  margin-top: 30px;
 `
 const Form = styled.form`
   padding: 40px;

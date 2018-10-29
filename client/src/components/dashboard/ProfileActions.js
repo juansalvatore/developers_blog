@@ -6,8 +6,6 @@ import styled from 'styled-components'
 
 class ProfileActions extends Component {
   render() {
-    const { user } = this.props.auth
-
     return (
       <ProfileActionsWrapper>
         <ButtonsContainer>
@@ -15,9 +13,13 @@ class ProfileActions extends Component {
             <Button>Edit Profile</Button>
           </Link>
           <Bar />
-          <Button>Add Experience</Button>
+          <Link to="/add-experience">
+            <Button>Add Experience</Button>
+          </Link>
           <Bar />
-          <Button>Add Education</Button>
+          <Link to="/add-education">
+            <Button>Add Education</Button>
+          </Link>
         </ButtonsContainer>
       </ProfileActionsWrapper>
     )
