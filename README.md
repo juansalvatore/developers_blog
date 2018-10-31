@@ -97,7 +97,7 @@ Post a comment (protected): <b>```POST /api/posts/comment/:id```</b><br/>
 Delete a comment (protected): <b>```DELETE /api/posts/comment/:id```</b><br/><br/>
 
 
-## ToDo
+## To Do
 
 ### Back-end ✓
 
