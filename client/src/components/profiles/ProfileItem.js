@@ -43,6 +43,11 @@ const ProfileItemWrapper = styled.div`
   border-radius: 5px;
   box-shadow: 10px 21px 64px -29px rgba(166, 166, 166, 1);
   border: 1px solid rgba(166, 166, 166, 0.3);
+
+  h3 {
+    text-transform: uppercase;
+    font-size: 16px;
+  }
 `
 
 const SkillsWrapper = styled.div`
