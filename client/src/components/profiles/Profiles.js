@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { getAllProfiles } from '../../actions/profileActions'
 
 import LinearProgress from '@material-ui/core/LinearProgress'
+import ProfileItems from './ProfileItem'
 import styled from 'styled-components'
 
 class Profiles extends Component {
@@ -18,7 +19,13 @@ class Profiles extends Component {
       profileItems = <LinearProgress />
     } else {
       if (profiles.length > 0) {
-        profileItems = <h1>PROFILES HERE</h1>
+        profileItems = (
+          <div>
+            {profiles.map(profile => (
+              <ProfileItems key={profile._id} profile={profile} />
+            ))}
+          </div>
+        )
       } else {
         profileItems = <h4>No profiles found...</h4>
       }
