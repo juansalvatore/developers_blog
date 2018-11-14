@@ -79,7 +79,9 @@ class Navbar extends Component {
         </MobileButtons>
 
         <DesktopButtons>
-          <Button first>Developers</Button>
+          <Link style={{ textDecoration: 'none' }} to="/profiles">
+            <Button first>Developers</Button>
+          </Link>
           {isAuthenticated ? authLinks : guestLinks}
         </DesktopButtons>
       </Nav>
