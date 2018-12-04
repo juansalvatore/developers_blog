@@ -5,6 +5,8 @@ import Moment from 'react-moment'
 import styled from 'styled-components'
 import { deleteExperience } from '../../actions/profileActions'
 
+import bucket from '../../img/icons/rubbish-bin.svg'
+
 class Experience extends Component {
   onDeleteClick = id => {
     this.props.deleteExperience(id)
@@ -19,7 +21,7 @@ class Experience extends Component {
           {exp.to === null ? <span>Current</span> : <Moment format="DD/MM/YYYY">{exp.to}</Moment>}
         </td>
         <td>
-          <button onClick={() => this.onDeleteClick(exp.id)}>Delete</button>
+          <span onClick={() => this.onDeleteClick(exp.id)}><img src={bucket} alt="delete"  width={25}/></span>
         </td>
       </tr>
     ))
@@ -63,6 +65,7 @@ const ExperienceWrapper = styled.div`
   table {
     border-collapse: collapse;
     width: 100%;
+    table-layout: fixed;
   }
 
   table,
@@ -75,9 +78,16 @@ const ExperienceWrapper = styled.div`
   td {
     height: 40px;
   }
+
+  td:nth-child(4) {
+    text-align: center;
+    opacity: 0.3;
+  }
+
   tr:nth-child(even) {
     background-color: rgba(0, 0, 0, 0.03);
   }
+
   th {
     height: 40px;
     text-align: left;

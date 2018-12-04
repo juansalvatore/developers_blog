@@ -5,6 +5,8 @@ import Moment from 'react-moment'
 import styled from 'styled-components'
 import { deleteEducation } from '../../actions/profileActions'
 
+import bucket from '../../img/icons/rubbish-bin.svg'
+
 class Education extends Component {
   onDeleteClick = id => {
     this.props.deleteEducation(id)
@@ -19,12 +21,12 @@ class Education extends Component {
           {edu.to === null ? <span>Current</span> : <Moment format="DD/MM/YYYY">{edu.to}</Moment>}
         </td>
         <td>
-          <button onClick={() => this.onDeleteClick(edu._id)}>Delete</button>
+          <span onClick={() => this.onDeleteClick(edu._id)}><img src={bucket} alt="delete"  width={25}/></span>
         </td>
       </tr>
     ))
     return (
-      <ExperienceWrapper>
+      <EducationWrapper>
         <h3>Education Credentials</h3>
         <table>
           <thead>
@@ -37,7 +39,7 @@ class Education extends Component {
             {education}
           </thead>
         </table>
-      </ExperienceWrapper>
+      </EducationWrapper>
     )
   }
 }
@@ -51,10 +53,11 @@ export default connect(
   { deleteEducation }
 )(Education)
 
-const ExperienceWrapper = styled.div`
+const EducationWrapper = styled.div`
   background-color: white;
   padding: 20px;
   margin-top: 20px;
+  margin-bottom: 120px;
   border-radius: 10px;
 
   h3 {
@@ -63,6 +66,7 @@ const ExperienceWrapper = styled.div`
   table {
     border-collapse: collapse;
     width: 100%;
+    table-layout: fixed
   }
 
   table,
@@ -75,9 +79,16 @@ const ExperienceWrapper = styled.div`
   td {
     height: 40px;
   }
+
+  td:nth-child(4) {
+    text-align: center;
+    opacity: 0.3;
+  }
+
   tr:nth-child(even) {
     background-color: rgba(0, 0, 0, 0.03);
   }
+
   th {
     height: 40px;
     text-align: left;

@@ -84,6 +84,7 @@ const DashboardWrapper = styled.div`
   position: relative;
   padding: 20px;
   top: 0px;
+  overflow-x: hidden;
 `
 
 const Subtitle = styled.p`
