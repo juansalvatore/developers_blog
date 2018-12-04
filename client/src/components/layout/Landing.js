@@ -79,9 +79,6 @@ class Landing extends Component {
                 <RegisterButton>Sign Up</RegisterButton>
               </ClickButtonAnimation>
             </Link>
-            {/* <Link style={{ textDecoration: 'none' }} to="/login">
-            <Button>Login</Button>
-          </Link> */}
           </div>
         </Container>
       </LandingWrapper>
