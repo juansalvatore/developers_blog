@@ -111,6 +111,7 @@ const LandingWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
 `
 
 const Container = styled.div`

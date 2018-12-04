@@ -1,5 +1,5 @@
 {
-  "name": "dev_blog",
+  "name": "dev_blog_server",
   "version": "1.0.0",
   "engines": {
     "node": "9.3.0"
@@ -20,6 +20,7 @@
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "concurrently": "^4.0.1",
+    "event-stream": "^3.3.4",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
     "lodash": "^4.17.11",
